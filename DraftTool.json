@@ -1,0 +1,72 @@
+{
+  "SaveName": "",
+  "Date": "",
+  "VersionNumber": "",
+  "GameMode": "",
+  "GameType": "",
+  "GameComplexity": "",
+  "Tags": [],
+  "Gravity": 0.5,
+  "PlayArea": 0.5,
+  "Table": "",
+  "Sky": "",
+  "Note": "",
+  "TabStates": {},
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "ObjectStates": [
+    {
+      "GUID": "bd5747",
+      "Name": "Custom_Assetbundle",
+      "Transform": {
+        "posX": 0,
+        "posY": 0,
+        "posZ": 0,
+        "rotX": 0,
+        "rotY": 0,
+        "rotZ": 0,
+        "scaleX": 2,
+        "scaleY": 2,
+        "scaleZ": 2
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.176470548,
+        "g": 0.176470548,
+        "b": 0.176470548
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomAssetbundle": {
+        "AssetbundleURL": "http://cloud-3.steamusercontent.com/ugc/854978386866130952/900C3DFCD35B456DFF1317012183ACBFBFF59683/",
+        "AssetbundleSecondaryURL": "",
+        "MaterialIndex": 0,
+        "TypeIndex": 0,
+        "LoopingEffectIndex": 0
+      },
+      "LuaScript": "function onload()\n	self.setRotation({0, 0, 0})\nlocalPosition = self.getPosition()\nlocalRotation = {x = self.getRotation().x, y = self.getRotation().y, z = self.getRotation().z + 180}\ncardToKeepLocalPosition = {x = localPosition.x + 1.7, y = localPosition.y + 1, z = localPosition.z - 2}\ncardToPassLocalPosition = {x = localPosition.x - 1.7, y = localPosition.y + 1, z = localPosition.z - 2}\n\n	local customBag = spawnObject({\n	type = \"Bag\",\n	position = {\n		x = self.getPosition().x + 2.4,\n		y = self.getPosition().y,\n		z = self.getPosition().z + 2.4\n		},\n	scale = {1, 1, 1}\n	})\n\nfunction onRotate(spin, flip, player_color, old_spin, old_flip)\n			changePositionToLocal(old_spin, spin)\nend\n\nfunction changePositionToLocal(old_spin, spin)\n	if (old_spin == 0 and spin == 90) then\n		localPosition.x = localPosition.x - 3\n		localPosition.z = localPosition.z - 0.28\n		localRotation.y = localRotation.y + 90\n		cardToKeepLocalPosition.x = cardToKeepLocalPosition.x - 3.6\n		cardToKeepLocalPosition.z = cardToKeepLocalPosition.z + 0.4\n		cardToPassLocalPosition.x = cardToPassLocalPosition.x - 0.25\n		cardToPassLocalPosition.z = cardToPassLocalPosition.z + 3.7\n	elseif (old_spin == 90 and spin == 180) then\n		localPosition.x = localPosition.x - 0.2\n		localRotation.y = localRotation.y + 90\n		cardToKeepLocalPosition.x = cardToKeepLocalPosition.x + 0.4\n		cardToKeepLocalPosition.z = cardToKeepLocalPosition.z + 3.6\n		cardToPassLocalPosition.x = cardToPassLocalPosition.x + 3.7\n		cardToPassLocalPosition.z = cardToPassLocalPosition.z + 0.25\n	elseif (old_spin == 180 and spin == 270) then\n		localPosition.x = localPosition.x + 4.2\n		localRotation.y = localRotation.y + 90\n		cardToKeepLocalPosition.x = cardToKeepLocalPosition.x + 3.6\n		cardToKeepLocalPosition.z = cardToKeepLocalPosition.z - 0.4\n		cardToPassLocalPosition.x = cardToPassLocalPosition.x + 0.25\n		cardToPassLocalPosition.z = cardToPassLocalPosition.z - 3.7\n	elseif (old_spin == 270 and spin == 0) then\n		localPosition.x = localPosition.x + 0.2\n		cardToKeepLocalPosition.x = cardToKeepLocalPosition.x - 0.4\n		cardToKeepLocalPosition.z = cardToKeepLocalPosition.z - 3.6\n		cardToPassLocalPosition.x = cardToPassLocalPosition.x - 3.7\n		cardToPassLocalPosition.z = cardToPassLocalPosition.z - 0.25\n		localRotation.y = 0\n	elseif (old_spin == 0 and spin == 270) then\n		localPosition.x = localPosition.x - 0.1\n		localPosition.z = localPosition.z + 0.3\n		localRotation.y = localRotation.y - 90\n		cardToKeepLocalPosition.x = cardToKeepLocalPosition.x + 0.4\n		cardToKeepLocalPosition.z = cardToKeepLocalPosition.z + 3.6\n		cardToPassLocalPosition.x = cardToPassLocalPosition.x + 3.7\n		cardToPassLocalPosition.z = cardToPassLocalPosition.z + 0.25\n	elseif (old_spin == 270 and spin == 180) then\n		localPosition.x = localPosition.x + 0.2\n		localRotation.y = localRotation.y - 90\n		cardToKeepLocalPosition.x = cardToKeepLocalPosition.x - 3.6\n		cardToKeepLocalPosition.z = cardToKeepLocalPosition.z + 0.4\n		cardToPassLocalPosition.x = cardToPassLocalPosition.x - 0.25\n		cardToPassLocalPosition.z = cardToPassLocalPosition.z + 3.7\n	elseif (old_spin == 180 and spin == 90) then\n		localPosition.x = localPosition.x - 0.1\n		localRotation.y = localRotation.y - 90\n		cardToKeepLocalPosition.x = cardToKeepLocalPosition.x - 0.4\n		cardToKeepLocalPosition.z = cardToKeepLocalPosition.z - 3.6\n		cardToPassLocalPosition.x = cardToPassLocalPosition.x - 3.7\n		cardToPassLocalPosition.z = cardToPassLocalPosition.z - 0.25\n	elseif (old_spin == 90 and spin == 0) then\n		localPosition.x = localPosition.x - 0.2\n		cardToKeepLocalPosition.x = cardToKeepLocalPosition.x + 3.6\n		cardToKeepLocalPosition.z = cardToKeepLocalPosition.z - 0.4\n		cardToPassLocalPosition.x = cardToPassLocalPosition.x + 0.25\n		cardToPassLocalPosition.z = cardToPassLocalPosition.z - 3.7\n		localRotation.y = 0\n	end\nend\n\n	customBag.setColorTint({1, 1, 1})\n	\n	local button_parameters = {}\n	button_parameters.click_function = \"onClick_divideDeal\"\n	button_parameters.function_owner = self\n	button_parameters.label = 'Разделить\\nкарты'\n	button_parameters.position = {0.75, 0.3, 1.3}\n	button_parameters.rotation = {0, 0, 0}\n	button_parameters.width = 900\n	button_parameters.height = 500\n	button_parameters.font_size = 100\n	self.createButton(button_parameters)\n	\n	deal = getObjectFromGUID(customBag.getGUID())\n	\n	local keepCardsDescription_parameters = {}\n	keepCardsDescription_parameters.click_function = \"alert\"\n	keepCardsDescription_parameters.function_owner = self\n	keepCardsDescription_parameters.label = 'Оставить'\n	keepCardsDescription_parameters.position = {-0.85, 0.3, 0}\n	keepCardsDescription_parameters.rotation = {0, 0, 0}\n	keepCardsDescription_parameters.width = 0\n	keepCardsDescription_parameters.height = 0\n	keepCardsDescription_parameters.font_size = 100\n	keepCardsDescription_parameters.font_color = {255, 0, 0}\n	self.createButton(keepCardsDescription_parameters)\n	\n	local passCardsDescription_parameters = {}\n	passCardsDescription_parameters.click_function = \"alert\"\n	passCardsDescription_parameters.function_owner = self\n	passCardsDescription_parameters.label = 'Передать'\n	passCardsDescription_parameters.position = {0.85, 0.3, 0}\n	passCardsDescription_parameters.rotation = {0, 0, 0}\n	passCardsDescription_parameters.width = 0\n	passCardsDescription_parameters.height = 0\n	passCardsDescription_parameters.font_size = 100\n	passCardsDescription_parameters.font_color = {0, 255, 0}\n	self.createButton(passCardsDescription_parameters)\n	\n	function alert()\n	return true\n	end\nend\n\nfunction onClick_divideDeal()\n  if isBagEmpty(deal) then\n	print(\"Положите карты в мешочек\")\n    return\n  end\n  math.randomseed(os.time())\n  pickCardFromDeal()\nend\n\nfunction dump(o)\n	if type(o) == 'table' then\n		local s = '{ '\n			for k,v in pairs(o) do\n				if type(k) ~= 'number' then k = '\"'..k..'\"' end\n					s = s .. '['..k..'] = ' .. dump(v) .. ','\n				end\n			return s .. '} '\n		else\n			return tostring(o)\n		end\nend\n\nfunction pickCardFromDeal()\n	if haveMultipleCards(deal) then\n		print(\"Достаньте карты из мешочка, объедините их в одну колоду и положите обратно\")\n		return\n	elseif isLastDeal(deal) then\n		local takenCard = deal.takeObject({\n			position = cardToKeepLocalPosition,\n			rotation = localRotation,\n			smooth = false\n			})\n			--print(\"Deal is last!\")\n			return\n	end\n	--print(\"Deal is not last!\")\n    local deck = deal.takeObject()\n	local quantity = deck.getQuantity()\n	deck.shuffle()\n	for _, containedCard in ipairs(deck.getObjects()) do\n		if haveRarePlus(deck) then\n			--print(\"Получена редкая/ультраредкая карта\", dump(containedCard.guid))\n			local rarePlusID = getRarePlusID(deck)\n			--print(\"ID редкой/ультраредкой карты:\", dump(rarePlusID))\n			local cardToKeep = deck.takeObject({\n			position = cardToKeepLocalPosition,\n			guid = rarePlusID,\n			rotation = localRotation,\n			smooth = false\n			})\n			break\n		else\n		--print(\"Получена не ультра-редкая карта\", dump(containedCard.guid))\n			local cardToKeep = deck.takeObject({\n				position = cardToKeepLocalPosition,\n				guid = containedCard.guid,\n				rotation = localRotation,\n				smooth = false\n			})\n			break\n		end\n	end\n	for i = 1, quantity - 1 do\n		local cardToPass = deck.takeObject({\n		position =	cardToPassLocalPosition,\n			rotation = localRotation,\n			smooth = false\n		})\n	end\nend\n\nfunction isBagEmpty(bag)\n  return bag.getData().ContainedObjects == nil\nend\n\nfunction isLastDeal(deal)\n		local additionalCardPresence = deal.getData().ContainedObjects[1].ContainedObjects\n	return additionalCardPresence == nil\nend\n\nfunction haveMultipleCards(deal)\n	return deal.getQuantity() > 1\nend\n\nfunction haveRarePlus(deck)\n	local cards = deck.getObjects()\n	for _, containedCard in ipairs(cards) do\n		for _, tag in ipairs(containedCard.tags) do\n			--print(\"Функция проверки на ультраредкую карту запущена\")\n			if tag == \"Ультраредкая\" or tag == \"Редкая\" then\n				return true\n			end\n		end\n	end\n	return false\nend\n\nfunction getRarePlusID(deck)\n	local cards = deck.getObjects()\n	for _, containedCard in ipairs(cards) do\n		for _, tag in ipairs(containedCard.tags) do\n			--print(\"Функция поиска ID ультраредкой карты запущена\")\n			if tag == \"Ультраредкая\" or tag == \"Редкая\" then\n				return containedCard.guid\n			end\n		end\n	end\nend\n\n-- ToDo: добавить функцию объединения объектов карт и колод внутри Bag\n\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  ]
+}
